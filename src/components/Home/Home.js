@@ -1,111 +1,109 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Grid from '@material-ui/core/Grid';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  formControl: {
-    margin: theme.spacing(2),
-  },
-  table: {
-    minWidth: 650,
-  },
-  th: {
-    color: '#fff',
-    fontWeight: 'bold'
-  }
-}));
-
-function createData(partNo, description, inventory, forecast, reorderQty, supplier) {
-  return { partNo, description, inventory, forecast, reorderQty, supplier };
-}
-
-const rows = [
-  createData('BL101', 'Brake Lines', 6.0, 24, 4.0, 'Hangzhou Kooying Auto Spare Parts Co., Ltd.'),
-  createData('RT201', 'Rotors', 9.0, 37, 4.3, 'Chihon Machinery Co., Ltd.'),
-  createData('CH301', 'Chain', 16.0, 24, 6.0, 'Indusware Trading & Supplier Pte Ltd.'),
-  createData('CS401', 'Cassette', 3.7, 67, 4.3, 'Synergy Import And Export Co., Ltd.'),
-  createData('SP501', 'Suspension', 16.0, 49, 3.9, 'Oem Automotive Pte Ltd.'),
-];
+import React, { forwardRef } from 'react';
+import MaterialTable from 'material-table';
+// Material table icons
+import AddBox from '@material-ui/icons/AddBox';
+import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import Check from '@material-ui/icons/Check';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import Clear from '@material-ui/icons/Clear';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import Edit from '@material-ui/icons/Edit';
+import FilterList from '@material-ui/icons/FilterList';
+import FirstPage from '@material-ui/icons/FirstPage';
+import LastPage from '@material-ui/icons/LastPage';
+import Remove from '@material-ui/icons/Remove';
+import SaveAlt from '@material-ui/icons/SaveAlt';
+import Search from '@material-ui/icons/Search';
+import ViewColumn from '@material-ui/icons/ViewColumn';
+import Save from '@material-ui/icons/Save';
 
 function Home() {
-  const classes = useStyles();
-  const [strategy, setStrategy] = React.useState('cheapestPrice');
-
-  const inputLabel = React.useRef(null);
-  const [labelWidth, setLabelWidth] = React.useState(0);
-  React.useEffect(() => {
-    setLabelWidth(inputLabel.current.offsetWidth);
-  }, []);
-
-  const handleChange = event => {
-    setStrategy(event.target.value);
+  const tableIcons = {
+    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+    Check: forwardRef((props, ref) => <Check {...props} ref={ref} fontSize="small" />),
+    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} fontSize="small" />),
+    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
+    DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} fontSize="small" />),
+    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
+    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Search: forwardRef((props, ref) => <Search {...props} ref={ref} fontSize="small" />),
+    Save: forwardRef((props, ref) => <Save {...props} ref={ref} />),
+    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} fontSize="small" />),
+    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
+    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
 
+  const [state, setState] = React.useState({
+    columns: [
+      { title: 'MPN', field: 'materialNo', editable: 'onUpdate' },
+      { title: 'Description', field: 'description', editable: 'onUpdate' },
+      { title: 'FY20W06', field: 'cw0', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W07', field: 'cw1', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W08', field: 'cw2', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W09', field: 'cw3', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W10', field: 'cw4', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W11', field: 'cw5', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W12', field: 'cw6', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W13', field: 'cw7', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W14', field: 'cw8', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W15', field: 'cw9', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W16', field: 'cw10', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W17', field: 'cw11', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W18', field: 'cw12', editable: 'onUpdate', type: 'numeric' }
+    ],
+    data: [
+      {
+        materialNo: '6008424', description: 'Cover - Timing',
+        cw0: 0, cw1: 0, cw2: 0, cw3: 0, cw4: 0, cw5: 0, cw6: 0, cw7: 0, cw8: 0, cw9: 0, cw10: 0, cw11: 0, cw12: 0
+      },
+      {
+        materialNo: '6004211', description: 'CM Shock Absorber: Rear,DAF SB220',
+        cw0: 0, cw1: 0, cw2: 0, cw3: 0, cw4: 0, cw5: 0, cw6: 0, cw7: 0, cw8: 0, cw9: 0, cw10: 0, cw11: 0, cw12: 0
+      },
+      {
+        materialNo: '7332121010', description: 'Glass-rr Or drop RH',
+        cw0: 0, cw1: 0, cw2: 0, cw3: 0, cw4: 0, cw5: 0, cw6: 0, cw7: 0, cw8: 0, cw9: 0, cw10: 0, cw11: 0, cw12: 0
+      },
+      {
+        materialNo: '6906043040', description: 'Lock Assy: Door R/L, for Toyota Taxi',
+        cw0: 0, cw1: 0, cw2: 0, cw3: 0, cw4: 0, cw5: 0, cw6: 0, cw7: 0, cw8: 0, cw9: 0, cw10: 0, cw11: 0, cw12: 0
+      },
+      {
+        materialNo: '6001581', description: 'Valve - Intake',
+        cw0: 0, cw1: 0, cw2: 0, cw3: 0, cw4: 0, cw5: 0, cw6: 0, cw7: 0, cw8: 0, cw9: 0, cw10: 0, cw11: 0, cw12: 0
+      },
+    ],
+  });
+
   return (
-    <div className={classes.root}>
-      <Grid container>
-        <Grid item xs={6}>
-          <FormControl variant="outlined" fullWidth className={classes.formControl} margin="dense">
-            <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
-              Supplier Strategy
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={strategy}
-              onChange={handleChange}
-              labelWidth={labelWidth}
-            >
-              <MenuItem value="cheapestPrice">Cheapest Price</MenuItem>
-              <MenuItem value="timeFulfillment">Time for fulfillment</MenuItem>
-              <MenuItem value="quality">Quality of goods</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={6}>
-        </Grid>
-      </Grid>
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
-          <TableHead style={{ backgroundColor: '#99ccee' }}>
-            <TableRow>
-              <TableCell className={classes.th}>Part No.</TableCell>
-              <TableCell className={classes.th}>Description</TableCell>
-              <TableCell className={classes.th} align="right">Inventory</TableCell>
-              <TableCell className={classes.th} align="right">Forecast</TableCell>
-              <TableCell className={classes.th} align="right">Re-Order Quantity</TableCell>
-              <TableCell className={classes.th}>Suggested Supplier</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map(row => (
-              <TableRow key={row.partNo}>
-                <TableCell>{row.partNo}</TableCell>
-                <TableCell>{row.description}</TableCell>
-                <TableCell align="right">{row.inventory}</TableCell>
-                <TableCell align="right">{row.forecast}</TableCell>
-                <TableCell align="right">{row.reorderQty}</TableCell>
-                <TableCell>{row.supplier}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+    <MaterialTable
+      icons={tableIcons}
+      title="Forecast EOH"
+      columns={state.columns}
+      data={state.data}
+      editable={{
+        onRowUpdate: (newData, oldData) =>
+          new Promise((resolve) => {
+            setTimeout(() => {
+              resolve();
+              setState(prevState => {
+                const data = [...prevState.data];
+                const index = data.indexOf(oldData);
+                data[index] = newData;
+                return { ...prevState, data };
+              });
+            }, 600)
+          }),
+      }}
+      style={{ padding: 8 }}
+    />
   );
 }
 

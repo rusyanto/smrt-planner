@@ -28,6 +28,39 @@
     "width": 6,
     "height": 3
   },
-  "mapping": [],
-  "id": "de7a4613-2f2b-423d-bc68-562b21951322"
+  "mapping": [
+    {
+      "alias": "forecastCalculated",
+      "dataSetId": "28fe9865-9541-4ce8-9303-d555593fb19a",
+      "fields": []
+    }
+  ],
+  "collections": [
+    {
+      "name": "smrtPlanner",
+      "schema": {
+        "columns": [
+          { "name": "materialNo", "type": "STRING" },
+          { "name": "description", "type": "STRING" },
+          { "name": "cw0", "type": "LONG" },
+          { "name": "cw1", "type": "LONG" },
+          { "name": "cw2", "type": "LONG" },
+          { "name": "cw3", "type": "LONG" },
+          { "name": "cw4", "type": "LONG" },
+          { "name": "cw5", "type": "LONG" },
+          { "name": "cw6", "type": "LONG" },
+          { "name": "cw7", "type": "LONG" },
+          { "name": "cw8", "type": "LONG" },
+          { "name": "cw9", "type": "LONG" },
+          { "name": "cw10", "type": "LONG" },
+          { "name": "cw11", "type": "LONG" },
+          { "name": "cw12", "type": "LONG" },
+          { "name": "updateTime", "type": "DATETIME" }
+        ]
+      },
+      "syncEnabled": true
+    }
+  ],
+  "id": "de7a4613-2f2b-423d-bc68-562b21951322",
+  "proxyId": "f4f28b62-8cf2-4443-b925-cd057d20c306"
 }

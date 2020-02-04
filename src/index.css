@@ -13,11 +13,11 @@ code {
     monospace;
 }
 
-th.MuiTableCell-root,
+/* th.MuiTableCell-root,
 td.MuiTableCell-root {
   font-size: 12px;
 }
 
 div.MuiInputBase-root {
   font-size: 12px;
-}
+} */

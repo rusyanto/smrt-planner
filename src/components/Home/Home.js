@@ -2,10 +2,12 @@ import React, { forwardRef, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import domo from 'ryuu.js';
 import MaterialTable from 'material-table';
+import MuiAlert from '@material-ui/lab/Alert';
 // Material-UI core
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Snackbar from '@material-ui/core/Snackbar';
 // Material table icons
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -24,6 +26,10 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import Save from '@material-ui/icons/Save';
 import Backup from '@material-ui/icons/Backup';
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles(theme => ({
   buttons: {
@@ -65,6 +71,11 @@ function Home() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const [openError, setOpenError] = useState(false);
+  const [msgSuccess, setMsgSuccess] = useState('This is a success message!');
+  const [msgError, setMsgError] = useState('This is an error message!');
+  
   const [state, setState] = useState({
     columns: [
       { title: 'MPN', field: 'materialNo', editable: 'onUpdate' },
@@ -86,6 +97,20 @@ function Home() {
     data: [],
   });
 
+  const handleCloseSuccess = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSuccess(false);
+  };
+
+  const handleCloseError = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenError(false);
+  };
+
   const handleSubmit = event => {
     let contents = [];
     let updateTime = new Date().toISOString();
@@ -95,12 +120,16 @@ function Home() {
     });
 
     setIsSubmitting(true);
-    domo.post(`/domo/datastores/v1/collections/smrtPlanner/documents/bulk`, contents)
-      .then(data => {
-        console.log(data);
-        setIsSubmitting(false);
+    domo.post(`/domo/datastores/v1/collections/smrtPlanner/documents/bulk1`, contents)
+      .then(resp => {
+        setMsgSuccess('Forecast successfully submitted!')
+        setOpenSuccess(true);
       })
-      .catch(e => console.log(e));
+      .catch(err => {
+        setMsgError(err.name + ': ' + err.message);
+        setOpenError(true);
+      })
+      .finally(() => setIsSubmitting(false));
   };
 
   useEffect(() => {
@@ -138,7 +167,7 @@ function Home() {
           }}
           style={{ padding: 8 }}
           isLoading={isLoading}
-          options={{ pageSize: 10 }}
+          options={{ pageSize: 5 }}
         />
       </Grid>
       <Grid item xs={12} className={classes.buttons}>
@@ -148,9 +177,18 @@ function Home() {
           <Button variant="contained" color="secondary" onClick={handleSubmit}>
             <Backup className={classes.button} />Submit
           </Button>
-      
         )}
       </Grid>
+      <Snackbar open={openSuccess} autoHideDuration={6000} onClose={handleCloseSuccess}>
+        <Alert onClose={handleCloseSuccess} severity="success">
+          {msgSuccess}
+        </Alert>
+      </Snackbar>
+      <Snackbar open={openError} autoHideDuration={6000} onClose={handleCloseError}>
+        <Alert onClose={handleCloseError} severity="error">
+          {msgError}
+        </Alert>
+      </Snackbar>
     </Grid>
   );
 }

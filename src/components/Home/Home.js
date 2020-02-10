@@ -120,7 +120,7 @@ function Home() {
     });
 
     setIsSubmitting(true);
-    domo.post(`/domo/datastores/v1/collections/smrtPlanner/documents/bulk1`, contents)
+    domo.post(`/domo/datastores/v1/collections/smrtPlanner/documents/bulk`, contents)
       .then(resp => {
         setMsgSuccess('Forecast successfully submitted!')
         setOpenSuccess(true);

@@ -167,7 +167,14 @@ function Home() {
           }}
           style={{ padding: 8 }}
           isLoading={isLoading}
-          options={{ pageSize: 5 }}
+          options={{
+            pageSize: 5,
+            headerStyle: {
+              backgroundColor: '#99ccee',
+              color: '#fff',
+              fontWeight: 'bold'
+            }
+          }}
         />
       </Grid>
       <Grid item xs={12} className={classes.buttons}>

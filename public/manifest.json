@@ -31,7 +31,7 @@
   "mapping": [
     {
       "alias": "forecastCalculated",
-      "dataSetId": "28fe9865-9541-4ce8-9303-d555593fb19a",
+      "dataSetId": "084af86b-1efa-4717-ba64-d57611e36e8c",
       "fields": []
     }
   ],
@@ -61,6 +61,26 @@
       "syncEnabled": true
     }
   ],
-  "id": "de7a4613-2f2b-423d-bc68-562b21951322",
-  "proxyId": "f4f28b62-8cf2-4443-b925-cd057d20c306"
+  "saved_ids": [
+    {
+      "instance": "pccw",
+      "id": "de7a4613-2f2b-423d-bc68-562b21951322",
+      "proxyId": "f4f28b62-8cf2-4443-b925-cd057d20c306",
+      "dataSetId": "28fe9865-9541-4ce8-9303-d555593fb19a"
+    },
+    {
+      "instance": "domo-sales-apac",
+      "id": "df849347-09fe-4c85-aac1-ddc0abfb19d8",
+      "proxyId": "7d77a7d3-e237-4a1b-8dad-ce6ea613a238",
+      "dataSetId": "a82942a7-8ccc-4026-9cd8-339e069710d3"
+    },
+    {
+      "instance": "modocorp",
+      "id": "06552eda-f7fc-4a90-8e33-e7ad6043d06a",
+      "proxyId": "613d8e2e-0cdf-4219-8c6f-3721031ef07a",
+      "dataSetId": "084af86b-1efa-4717-ba64-d57611e36e8c"
+    }
+  ],
+  "id": "06552eda-f7fc-4a90-8e33-e7ad6043d06a",
+  "proxyId": "613d8e2e-0cdf-4219-8c6f-3721031ef07a"
 }

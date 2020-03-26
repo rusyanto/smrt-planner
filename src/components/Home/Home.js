@@ -1,7 +1,8 @@
 import React, { forwardRef, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import domo from 'ryuu.js';
-import MaterialTable from 'material-table';
+import logo from '../../assets/logo_smrt.png';
+import MaterialTable, { MTableToolbar } from 'material-table';
 import MuiAlert from '@material-ui/lab/Alert';
 // Material-UI core
 import Grid from '@material-ui/core/Grid';
@@ -80,19 +81,19 @@ function Home() {
     columns: [
       { title: 'MPN', field: 'materialNo', editable: 'onUpdate' },
       { title: 'Description', field: 'description', editable: 'onUpdate' },
-      { title: 'FY20W06', field: 'cw0', editable: 'onUpdate', type: 'numeric' },
-      { title: 'FY20W07', field: 'cw1', editable: 'onUpdate', type: 'numeric' },
-      { title: 'FY20W08', field: 'cw2', editable: 'onUpdate', type: 'numeric' },
-      { title: 'FY20W09', field: 'cw3', editable: 'onUpdate', type: 'numeric' },
-      { title: 'FY20W10', field: 'cw4', editable: 'onUpdate', type: 'numeric' },
-      { title: 'FY20W11', field: 'cw5', editable: 'onUpdate', type: 'numeric' },
-      { title: 'FY20W12', field: 'cw6', editable: 'onUpdate', type: 'numeric' },
-      { title: 'FY20W13', field: 'cw7', editable: 'onUpdate', type: 'numeric' },
-      { title: 'FY20W14', field: 'cw8', editable: 'onUpdate', type: 'numeric' },
-      { title: 'FY20W15', field: 'cw9', editable: 'onUpdate', type: 'numeric' },
-      { title: 'FY20W16', field: 'cw10', editable: 'onUpdate', type: 'numeric' },
-      { title: 'FY20W17', field: 'cw11', editable: 'onUpdate', type: 'numeric' },
-      { title: 'FY20W18', field: 'cw12', editable: 'onUpdate', type: 'numeric' }
+      { title: 'FY20W14', field: 'cw0', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W15', field: 'cw1', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W16', field: 'cw2', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W17', field: 'cw3', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W18', field: 'cw4', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W19', field: 'cw5', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W20', field: 'cw6', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W21', field: 'cw7', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W22', field: 'cw8', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W23', field: 'cw9', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W24', field: 'cw10', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W25', field: 'cw11', editable: 'onUpdate', type: 'numeric' },
+      { title: 'FY20W26', field: 'cw12', editable: 'onUpdate', type: 'numeric' }
     ],
     data: [],
   });
@@ -174,6 +175,13 @@ function Home() {
               color: '#fff',
               fontWeight: 'bold'
             }
+          }}
+          components={{
+            Toolbar: props => (
+              <div style={{ paddingBottom: 8 }}>
+                <img src={logo} alt="logo" style={{ float: 'left' }} /><MTableToolbar {...props} />
+              </div>
+            )
           }}
         />
       </Grid>
